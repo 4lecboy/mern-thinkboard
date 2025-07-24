@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import Navbar from "../components/Navbar"
-import RateLimitedUi from "../components/RateLimitedUi"
+import RateLimitedUi from "../components/RateLimitedUI"
 import toast from 'react-hot-toast';
 import NoteCard from "../components/NoteCard";
 import axiosInstance from "../lib/axios";
@@ -37,13 +37,13 @@ const HomePage = () => {
       <Navbar />
       {isRateLimited && <RateLimitedUi />}
 
-      <div className="max-w-7xl mx-auto p-4 mt-6">
-        {loading && <div className="text-center text-primary py-10">Loading notes...</div>}
+      <div className="p-4 mx-auto mt-6 max-w-7xl">
+        {loading && <div className="py-10 text-center text-primary">Loading notes...</div>}
 
         {notes.length === 0 && !loading && !isRateLimited && <NotesNotFound />}
 
         {notes.length > 0 && !isRateLimited && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {notes.map((note) => (
               <NoteCard key={note._id} note={note} setNotes={setNotes} />
             ))}
